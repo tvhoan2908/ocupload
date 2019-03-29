@@ -20,13 +20,14 @@ CKEDITOR.plugins.add('ocupload', {
 var OcUploadModel = {
     callModal: function (editor) {
         this.editor = editor;
-        if (!$('#oc-upload').length) {
-            $('body').append(OcUploadModel.template)
-        }
-        
+        $('#oc-upload').remove()
+        $('body').append(OcUploadModel.template)
+
         $('#oc-image').trigger('click')
         $('#oc-image').change(function(e) {
+            console.log('Changed')
             let input = event.target
+            console.log(event.target)
             if (input.files && input.files[0]) {
                 if (input.files[0]['size'] > (2 * 1024 * 1024)) {
                     alert('Chỉ cho phép upload file có tối đa 2MB')
